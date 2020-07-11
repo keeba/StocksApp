@@ -159,7 +159,6 @@ export default function Stock(props) {
                 <span className={classes.boldright}>
                   {stock.PercentPortfolio}
                 </span>
-                %
               </Typography>
               <BorderLinearProgress
                 value={parseFloat(stock.PercentPortfolio)}
@@ -182,14 +181,14 @@ export default function Stock(props) {
                 </span>
               </Typography>
               <Typography>
-                Return
+                % Return
                 <span className={classes.boldright}>
                   {getPercentElement(
                     stock.PercentReturn,
                     classes.downred,
                     classes.upgreen
                   )}
-                  {removeSign(stock.PercentReturn)}
+                  {removeSign(stock.PercentReturn)} %
                 </span>
               </Typography>
               <BorderLinearProgress
