@@ -1,29 +1,62 @@
 import React, { Component } from "react";
-import Paper from "@material-ui/core/Paper";
-import {
-  Chart,
-  PieSeries,
+import PieChart, {
+  Series,
+  Label,
+  Connector,
+  Size,
   Legend,
-} from "@devexpress/dx-react-chart-material-ui";
-
-import { Animation } from "@devexpress/dx-react-chart";
+  Font,
+} from "devextreme-react/pie-chart";
 
 class Portfolio extends Component {
   render() {
     const data = this.getDataPoints();
     return (
-      <Paper>
-        <Chart data={data}>
-          <PieSeries
-            valueField='value'
-            argumentField='type'
-            innerRadius={0.8}
-          />
-          <Legend position='bottom' />
-          <Animation />
-        </Chart>
-      </Paper>
+      <PieChart
+        id='pie'
+        dataSource={data}
+        palette='Bright'
+        type='doughnut'
+        title='Portfolio'
+        onPointClick={this.pointClickHandler}
+        onLegendClick={this.legendClickHandler}
+        innerRadius={1.2}
+      >
+        <Legend
+          orientation='horizontal'
+          itemTextPosition='right'
+          horizontalAlignment='center'
+          verticalAlignment='bottom'
+          columnCount={4}
+        />
+        <Series argumentField='type' valueField='value'>
+          <Label visible={true} customizeText={this.customizeText}>
+            <Font size={12} />
+          </Label>
+        </Series>
+
+        <Size width={350} />
+      </PieChart>
     );
+  }
+
+  customizeText(arg) {
+    return `${arg.valueText} (${arg.percentText})`;
+  }
+
+  pointClickHandler(e) {
+    this.toggleVisibility(e.target);
+  }
+
+  legendClickHandler(e) {
+    let arg = e.target;
+    let item = e.component.getAllSeries()[0].getPointsByArg(arg)[0];
+
+    this.toggleVisibility(item);
+  }
+
+  toggleVisibility(item) {
+    item.isVisible() ? item.hide() : item.show();
   }
 
   getDataPoints = () => {
