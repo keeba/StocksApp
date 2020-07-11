@@ -1,0 +1,68 @@
+[
+  {
+    "Name": "AADR",
+    "Quantity": "430",
+    "Price": "50.30",
+    "AvgCost": "41.75",
+    "InvestedAmount": "17952.07",
+    "PercentPortfolio": "22.06",
+    "UnrealizedPL": "3676.93",
+    "PercentReturn": "20.48",
+    "Type": "MF"
+  },
+  {
+    "Name": "MFEM",
+    "Quantity": "210",
+    "Price": "23.20",
+    "AvgCost": "22.50",
+    "InvestedAmount": "4725.84",
+    "PercentPortfolio": "5.81",
+    "UnrealizedPL": "146.16",
+    "PercentReturn": "3.09",
+    "Type": "MF"
+  },
+  {
+    "Name": "JPEM",
+    "Quantity": "328",
+    "Price": "52.50",
+    "AvgCost": "56.70",
+    "InvestedAmount": "18597.60",
+    "PercentPortfolio": "22.86",
+    "UnrealizedPL": "-1,377.60",
+    "PercentReturn": "-7.41",
+    "Type": "MF"
+  },
+  {
+    "Name": "KEMQ",
+    "Quantity": "801",
+    "Price": "20.40",
+    "AvgCost": "22.24",
+    "InvestedAmount": "17811.04",
+    "PercentPortfolio": "21.89",
+    "UnrealizedPL": "-1,470.64",
+    "PercentReturn": "8.26",
+    "Type": "MF"
+  },
+  {
+    "Name": "KLDW",
+    "Quantity": "523",
+    "Price": "32.90",
+    "AvgCost": "26.32",
+    "InvestedAmount": "13765.36",
+    "PercentPortfolio": "16.92",
+    "UnrealizedPL": "3,441.34",
+    "PercentReturn": "3.09",
+    "Type": "ETF"
+  },
+  {
+    "Name": "KOIN",
+    "Quantity": "335",
+    "Price": "25.40",
+    "AvgCost": "25.40",
+    "InvestedAmount": "8509.00",
+    "PercentPortfolio": "10.46",
+    "UnrealizedPL": "0",
+    "PercentReturn": "0.00",
+    "Type": "ETF"
+  }
+]
