@@ -5,34 +5,37 @@ import PieChart, {
   Legend,
   Font,
 } from "devextreme-react/pie-chart";
+import { Typography } from "@material-ui/core";
 
 class Portfolio extends Component {
   render() {
     const data = this.getDataPoints();
     return (
-      <PieChart
-        id='pie'
-        dataSource={data}
-        palette='Bright'
-        type='doughnut'
-        title='Portfolio'
-        onPointClick={this.pointClickHandler}
-        onLegendClick={this.legendClickHandler}
-        innerRadius={1.2}
-      >
-        <Legend
-          orientation='horizontal'
-          itemTextPosition='right'
-          horizontalAlignment='center'
-          verticalAlignment='bottom'
-          columnCount={4}
-        />
-        <Series argumentField='type' valueField='value'>
-          <Label visible={true} customizeText={this.customizeText}>
-            <Font size={12} />
-          </Label>
-        </Series>
-      </PieChart>
+      <div style={{ padding: "20px 0px" }}>
+        <Typography align='center' variant='h5'>
+          Portfolio
+        </Typography>
+        <PieChart
+          id='pie'
+          dataSource={data}
+          type='doughnut'
+          onPointClick={this.pointClickHandler}
+          onLegendClick={this.legendClickHandler}
+          innerRadius={1.2}
+        >
+          <Legend
+            orientation='horizontal'
+            itemTextPosition='right'
+            horizontalAlignment='center'
+            verticalAlignment='bottom'
+          />
+          <Series argumentField='type' valueField='value'>
+            <Label visible={true} customizeText={this.customizeText}>
+              <Font size={12} />
+            </Label>
+          </Series>
+        </PieChart>
+      </div>
     );
   }
 

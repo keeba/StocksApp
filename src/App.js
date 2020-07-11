@@ -13,7 +13,7 @@ class App extends Component {
     const stocks = this.props.stocks;
     return (
       <React.Fragment>
-        <Grid container spacing={3} style={{ marginTop: "10px" }}>
+        <Grid container>
           <Grid item xs={9}>
             {stocks &&
               stocks.map((stock) => <Stock key={stock.Name} stock={stock} />)}
