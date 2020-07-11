@@ -2,8 +2,6 @@ import React, { Component } from "react";
 import PieChart, {
   Series,
   Label,
-  Connector,
-  Size,
   Legend,
   Font,
 } from "devextreme-react/pie-chart";
@@ -34,8 +32,6 @@ class Portfolio extends Component {
             <Font size={12} />
           </Label>
         </Series>
-
-        <Size width={350} />
       </PieChart>
     );
   }
