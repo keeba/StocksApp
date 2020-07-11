@@ -102,8 +102,16 @@ export default function Stock(props) {
             <CardContent className={classes.cardcontent}>
               <Typography variant='caption'>{stock.Name}</Typography>
               <ListIcon className={classes.list}></ListIcon>
-              <Typography variant='h5'>
-                {formatCurrency(stock.Price)}
+              <Typography variant='h6'>
+                $
+                <span
+                  style={{
+                    color: "#0041C2",
+                    fontSize: "1.3em",
+                  }}
+                >
+                  {stock.Price}
+                </span>
               </Typography>
             </CardContent>
           </Card>
