@@ -5,6 +5,7 @@ import LinearProgress from "@material-ui/core/LinearProgress";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
+import Slider from "@material-ui/core/Slider";
 import { makeStyles, withStyles } from "@material-ui/core/styles";
 import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
 import ArrowDropUpIcon from "@material-ui/icons/ArrowDropUp";
@@ -66,6 +67,41 @@ const useStyles = makeStyles({
   },
 });
 
+const PositiveSlider = withStyles((theme) => ({
+  root: {
+    color: theme.palette.grey[theme.palette.type === "light" ? 200 : 700],
+    height: 8,
+  },
+  thumb: { display: "none" },
+  track: {
+    height: 8,
+    borderRadius: 0,
+    backgroundColor: "green",
+  },
+  rail: {
+    height: 8,
+    borderRadius: 0,
+    opacity: 1,
+  },
+}))(Slider);
+const NegativeSlider = withStyles((theme) => ({
+  root: {
+    color: theme.palette.grey[theme.palette.type === "light" ? 200 : 700],
+    height: 8,
+  },
+  thumb: { display: "none" },
+  track: {
+    height: 8,
+    borderRadius: 0,
+    backgroundColor: "red",
+  },
+  rail: {
+    height: 8,
+    borderRadius: 0,
+    opacity: 1,
+  },
+}))(Slider);
+
 const BorderLinearProgress = withStyles((theme) => ({
   root: {
     height: 10,
@@ -87,6 +123,9 @@ const BorderLinearProgress = withStyles((theme) => ({
   barColorSecondary: {
     backgroundColor: "red",
     borderRadius: 5,
+  },
+  progressBarContainer: {
+    transform: [{ rotate: "180deg" }],
   },
 }))(LinearProgress);
 
@@ -151,7 +190,7 @@ export default function Stock(props) {
               <Typography className={classes.bold}>
                 Market Value
                 <span className={classes.valuefield}>
-                  {getMarketValue(stock.InvestedAmount, stock.UnrealizedPL)}
+                  {getMarketValue(stock.Quantity, stock.Price)}
                 </span>
               </Typography>
               <Typography>
@@ -163,7 +202,6 @@ export default function Stock(props) {
               <BorderLinearProgress
                 value={parseFloat(stock.PercentPortfolio)}
                 variant='determinate'
-                disabled
                 className={classes.progressbar}
                 color='primary'
               />
@@ -191,15 +229,7 @@ export default function Stock(props) {
                   {removeSign(stock.PercentReturn)} %
                 </span>
               </Typography>
-              <BorderLinearProgress
-                value={parseFloat(stock.PercentReturn.replace("-", ""))}
-                variant='determinate'
-                disabled
-                className={classes.progressbar}
-                color={
-                  parseFloat(stock.PercentReturn) >= 0 ? "primary" : "secondary"
-                }
-              />
+              {getSlider(stock.PercentReturn)}
             </CardContent>
           </Card>
         </Grid>
@@ -226,8 +256,8 @@ export default function Stock(props) {
 }
 
 // utility functions
-function getMarketValue(InvestedAmount, UnrealizedPL) {
-  return formatCurrency(parseFloat(InvestedAmount) + parseFloat(UnrealizedPL));
+function getMarketValue(quantity, price) {
+  return formatCurrency(parseFloat(quantity) * parseFloat(price));
 }
 
 function formatCurrency(money) {
@@ -253,19 +283,11 @@ function removeSign(percent) {
   return percent.replace("-", "");
 }
 
-function getMin() {
-  return -500;
-}
-
-function getMax() {
-  return 500;
-}
-
-function getSliderList(percent) {
+function getSlider(percent) {
   percent = parseFloat(percent);
   if (percent >= 0) {
-    return [0, percent];
+    return <PositiveSlider value={[0, percent]} min={-100} max={100} />;
   } else {
-    return [percent, 0];
+    return <NegativeSlider value={[percent, 0]} min={-100} max={100} />;
   }
 }
